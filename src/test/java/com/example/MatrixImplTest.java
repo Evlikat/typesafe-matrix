@@ -125,4 +125,32 @@ public class MatrixImplTest {
 
         assertEquals(m3x2, m2x3.transpose());
     }
+
+    @Test
+    public void shouldMultiplyVector() throws Exception {
+        Matrix<Double, Double, Of3, Of3> m3x3 = new MatrixImpl<>(
+                dv3me,
+                dv3g,
+                dg,
+                dg,
+                of3,
+                of3,
+                new VectorImpl<>(
+                        dv3me,
+                        dv3g,
+                        dg,
+                        of3,
+                        Arrays.asList(
+                                new VectorImpl<>(d, dg, dg, of3, Arrays.asList(2.0, 4.0, 0.0)),
+                                new VectorImpl<>(d, dg, dg, of3, Arrays.asList(-2.0, 1.0, 3.0)),
+                                new VectorImpl<>(d, dg, dg, of3, Arrays.asList(-1.0, 0.0, 1.0))
+                        )
+                )
+        );
+        HomoMultiVector<Double, Of3> v3 = new HomoMultiVector<>(d, dg, of3, Arrays.asList(1.0, 2.0, -1.0));
+
+        Vector<Double, Double, Of3> actualV3 = m3x3.multiply(v3);
+        HomoMultiVector<Double, Of3> expectedV3 = new HomoMultiVector<>(d, dg, of3, Arrays.asList(10.0, -3.0, -2.0));
+        assertEquals(expectedV3, actualV3);
+    }
 }

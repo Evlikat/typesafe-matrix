@@ -13,7 +13,7 @@ public class DoubleZeroVector<N extends Vectors> implements Vector<Double, Doubl
     }
 
     @Override
-    public N getVectorChar() {
+    public N getSize() {
         return size;
     }
 
@@ -35,11 +35,6 @@ public class DoubleZeroVector<N extends Vectors> implements Vector<Double, Doubl
     @Override
     public Double multiply(Vector<Double, Double, N> otherVector) {
         return 0.0;
-    }
-
-    @Override
-    public <K extends Vectors> Vector<Double, Double, K> multiply(Matrix<Double, Double, N, K> matrix) {
-        return null;
     }
 
     @Override

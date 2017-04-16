@@ -143,8 +143,16 @@ public class MatrixImpl<ELEM, M_RES, M extends Vectors, N extends Vectors> imple
     }
 
     @Override
-    public Vector<ELEM, M_RES, M> multiply(Vector<ELEM, M_RES, N> vector) {
-        return null;
+    public HomoMultiVector<ELEM, M> multiply(HomoMultiVector<ELEM, N> vector) {
+        List<ELEM> newElements = IntStream.range(0, this.getRows().size())
+                .mapToObj(i -> this.getRow(i).multiply(vector))
+                .collect(toList());
+        return new HomoMultiVector<>(
+                vector.getEnv(),
+                elementGroup,
+                getRows(),
+                newElements
+        );
     }
 
     @Override

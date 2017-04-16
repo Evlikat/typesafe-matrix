@@ -18,7 +18,7 @@ public interface Matrix<ELEM, M_RES, M extends Vectors, N extends Vectors> {
 
     <K extends Vectors> Matrix<ELEM, M_RES, M, K> multiply(Matrix<ELEM, M_RES, N, K> otherMatrix);
 
-    Vector<ELEM, M_RES, M> multiply(Vector<ELEM, M_RES, N> vector);
+    HomoMultiVector<ELEM, M> multiply(HomoMultiVector<ELEM, N> vector);
 
     Matrix<ELEM, M_RES, N, M> transpose();
 }
