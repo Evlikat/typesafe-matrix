@@ -8,7 +8,7 @@ public interface Matrix<ELEM, M_RES, M extends Vectors, N extends Vectors> {
 
     VectorGroup<ELEM, ELEM, N> getVectorGroup();
 
-    MultiplicandGroup<Vector<ELEM, ELEM, N>, M_RES> getVectorMultiEnv();
+    VectorMultiplicandGroup<ELEM, ELEM, M_RES, N> getVectorMultiEnv();
 
     Vector<ELEM, ELEM, N> getRow(int i);
 

@@ -14,19 +14,19 @@ public class VectorImpl<E, R, N extends Vectors> implements Vector<E, R, N> {
     // add elements
     private final Group<E> elementGroup;
     private final Group<R> multipliedElementGroup;
-    private final List<E> v;
+    private final List<E> elements;
     private final N vectorChar;
 
     public VectorImpl(MultiplicandGroup<E, R> env,
                       Group<E> elementGroup,
                       Group<R> multipliedElementGroup,
                       N vectorChar,
-                      List<E> v) {
+                      List<E> elements) {
         this.env = env;
         this.elementGroup = elementGroup;
         this.multipliedElementGroup = multipliedElementGroup;
         this.vectorChar = vectorChar;
-        this.v = v;
+        this.elements = elements;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class VectorImpl<E, R, N extends Vectors> implements Vector<E, R, N> {
 
     @Override
     public E get(int index) {
-        return v.get(index);
+        return elements.get(index);
     }
 
     @Override
@@ -66,16 +66,32 @@ public class VectorImpl<E, R, N extends Vectors> implements Vector<E, R, N> {
 
     @Override
     public void forEach(Consumer<E> consumer) {
-        v.forEach(consumer);
+        elements.forEach(consumer);
     }
 
     @Override
     public Stream<E> elements() {
-        return v.stream();
+        return elements.stream();
     }
 
     @Override
     public String toString() {
-        return v.toString();
+        return elements.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        VectorImpl<?, ?, ?> vector = (VectorImpl<?, ?, ?>) o;
+
+        return elements.equals(vector.elements);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return elements.hashCode();
     }
 }

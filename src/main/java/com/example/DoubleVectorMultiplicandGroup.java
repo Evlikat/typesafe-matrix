@@ -1,11 +1,9 @@
 package com.example;
 
-public class DoubleVectorMultiplicandGroup<N extends Vectors> implements MultiplicandGroup<Vector<Double, Double, N>, Double> {
-
-    private final N size;
+public class DoubleVectorMultiplicandGroup<N extends Vectors> extends VectorMultiplicandGroup<Double, Double, Double, N> {
 
     public DoubleVectorMultiplicandGroup(N size) {
-        this.size = size;
+        super(size);
     }
 
     @Override
@@ -14,7 +12,12 @@ public class DoubleVectorMultiplicandGroup<N extends Vectors> implements Multipl
     }
 
     @Override
+    public <M extends Vectors> DoubleVectorMultiplicandGroup<M> resize(M newSize) {
+        return new DoubleVectorMultiplicandGroup<M>(newSize);
+    }
+
+    @Override
     public Vector<Double, Double, N> unit() {
-        return new DoubleZeroVector<>(size);
+        return new DoubleZeroVector<>(getSize());
     }
 }

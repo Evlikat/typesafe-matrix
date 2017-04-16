@@ -16,4 +16,6 @@ public abstract class VectorGroup<ELEM, M_RES, N extends Vectors> implements Gro
     public Vector<ELEM, M_RES, N> add(Vector<ELEM, M_RES, N> e1, Vector<ELEM, M_RES, N> e2) {
         return e1.add(e2);
     }
+
+    public abstract <M extends Vectors> VectorGroup<ELEM, ELEM, M> resize(M rows);
 }

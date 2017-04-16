@@ -12,6 +12,11 @@ public class DoubleVectorGroup<N extends Vectors> extends VectorGroup<Double, Do
     }
 
     @Override
+    public <M extends Vectors> VectorGroup<Double, Double, M> resize(M rows) {
+        return new DoubleVectorGroup<>(rows);
+    }
+
+    @Override
     public Vector<Double, Double, N> zero() {
         return new DoubleZeroVector<>(getSize());
     }
